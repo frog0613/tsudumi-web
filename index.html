@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お酒とおばんざい つづみ</title>
+    <!-- Google Fonts for Web -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/wa-design.css">
+</head>
+
+<body>
+    <!-- モバイル向け：最優先の予約ボタン・アクセス（スクロール追従する下部固定バー） -->
+    <div class="mobile-sticky-actions">
+        <a href="tel:09028184904" class="btn-primary">
+            <span class="icon">📞</span> 電話予約
+        </a>
+        <a href="#access" class="btn-secondary">
+            <span class="icon">📍</span> アクセス
+        </a>
+    </div>
+
+    <!-- ヒーローセクション（ファーストビュー） -->
+    <header class="hero section-fade">
+        <div class="hero-inner">
+            <h1 class="store-name vertical-text">
+                お酒とおばんざい<br>
+                <span class="name-highlight">つづみ</span>
+            </h1>
+            <p class="hero-concept vertical-text">
+                旬の食材を活かした丁寧なおばんざいと、<br>
+                店主厳選の日本酒。
+            </p>
+        </div>
+    </header>
+
+    <main>
+        <!-- 料理とお酒 (Menu) -->
+        <section id="menu" class="section section-fade">
+            <div class="container">
+                <h2 class="section-title">お品書き</h2>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="image-wrapper">
+                            <!-- // NOTE: 画像が存在しない場合は、onerrorでプレースホルダーを表示させてレイアウト崩れを防ぎます -->
+                            <img src="sozai/ryori/main_dish_01.jpg" alt="本日のおばんざい 5点盛り合わせ" class="zoom-image"
+                                onerror="this.src='https://images.unsplash.com/photo-1580651315530-69c8e0026377?q=80&w=1000&auto=format&fit=crop';">
+                        </div>
+                        <div class="menu-info">
+                            <h3>本日のおばんざい 5点盛り合わせ</h3>
+                            <p>季節の移ろいを一皿に凝縮した、店主自慢の盛り合わせ。</p>
+                        </div>
+                    </div>
+                    <div class="menu-item text-only">
+                        <h3 class="accent-title">厳選の日本酒</h3>
+                        <p>
+                            北海道の地酒<br>
+                            <span class="small-text">（十一州、国稀、上川大雪など）</span>
+                        </p>
+                        <p class="mt-2">
+                            全国から集めた<br>
+                            季節限定の銘酒をご用意。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 店内空間 (Space) -->
+        <section id="space" class="section section-fade bg-alt">
+            <div class="container">
+                <h2 class="section-title">空間</h2>
+                <div class="space-grid">
+                    <div class="space-info">
+                        <p class="space-desc">木のぬくもりを感じる、隠れ家のような落ち着いた空間。</p>
+                        <ul class="seat-info">
+                            <li>
+                                <strong>カウンター（12席）</strong>
+                                店主との会話を楽しめる特等席
+                            </li>
+                            <li>
+                                <strong>テーブル席（6席）</strong>
+                                最大18名まで対応可能
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="image-wrapper">
+                        <!-- // NOTE: 同様にプレースホルダーフォールバック付き -->
+                        <img src="sozai/naisou/interior_01.jpg" alt="店内の様子" class="zoom-image"
+                            onerror="this.src='https://images.unsplash.com/photo-1542665952-1451334e2b17?q=80&w=1000&auto=format&fit=crop';">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 店舗情報 (Access & Info) -->
+        <section id="access" class="section section-fade">
+            <div class="container">
+                <h2 class="section-title">店舗情報</h2>
+                <div class="info-grid">
+                    <div class="info-text">
+                        <dl class="info-list">
+                            <dt>営業時間</dt>
+                            <dd>18:00 〜 24:00</dd>
+
+                            <dt>定休日</dt>
+                            <dd>日曜日・祝日</dd>
+
+                            <dt>所在地</dt>
+                            <dd>
+                                〒064-0804<br>
+                                北海道札幌市中央区南４条西３丁目２−３<br>
+                                第３２桂和ビル 6階
+                            </dd>
+
+                            <dt>電話番号</dt>
+                            <dd><a class="phone-link" href="tel:09028184904">090-2818-4904</a></dd>
+                        </dl>
+                    </div>
+                    <div class="info-map">
+                        <iframe
+                            src="https://maps.google.com/maps?q=北海道札幌市中央区南４条西３丁目２−３%20第３２桂和ビル&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                            width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p><small>&copy; お酒とおばんざい つづみ All Rights Reserved.</small></p>
+    </footer>
+
+    <!-- スクロールアニメーション用スクリプト -->
+    <script src="scripts/wa-logic.js"></script>
+</body>
+
+</html>

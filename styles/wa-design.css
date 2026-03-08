@@ -1,0 +1,443 @@
+@charset "UTF-8";
+
+/* ============================
+   CSS Variables (Design Tokens)
+   ============================ */
+:root {
+    --color-bg: #F5F5F0;
+    /* 生成り色（和紙のようなベース色） */
+    --color-text: #333333;
+    /* 墨色（文字色） */
+    --color-accent: #B22222;
+    /* 落ち着いた朱色（アクセント） */
+    --color-alt-bg: rgba(230, 227, 215, 0.4);
+    /* 背景の切替色 */
+
+    --font-serif: 'Noto Serif JP', serif;
+    --font-sans: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+}
+
+/* ============================
+   Base & Reset
+   ============================ */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-serif);
+    line-height: 1.8;
+    letter-spacing: 0.08em;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* 疑似和紙テクスチャ（ノイズ感）の表現 */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: -1;
+}
+
+h1,
+h2,
+h3 {
+    font-weight: 400;
+    /* 明朝体の美しさを活かすためウェイトは控えめに */
+}
+
+/* 汎用クラス */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.section {
+    padding: 7rem 0;
+}
+
+.bg-alt {
+    background-color: var(--color-alt-bg);
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+.small-text {
+    font-size: 0.85em;
+    opacity: 0.8;
+}
+
+/* 見出しスタイル */
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 4rem;
+    color: var(--color-accent);
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+    letter-spacing: 0.15em;
+}
+
+.section-title::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 2px;
+    background-color: var(--color-accent);
+}
+
+/* ============================
+   Hero Section (ファーストビュー)
+   ============================ */
+.hero {
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.hero-inner {
+    display: flex;
+    gap: 4rem;
+    flex-direction: row-reverse;
+    /* 右から左へ流れる和風の視線誘導 */
+}
+
+.vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+}
+
+.store-name {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.8;
+    letter-spacing: 0.25em;
+    color: var(--color-text);
+    border-left: 1px solid rgba(0, 0, 0, 0.15);
+    /* 区切り線 */
+    padding-left: 2rem;
+}
+
+.name-highlight {
+    color: var(--color-accent);
+}
+
+.hero-concept {
+    font-size: 1.15rem;
+    line-height: 2.5;
+    letter-spacing: 0.2em;
+    color: #555;
+    padding-top: 2rem;
+    /* 本文の開始位置をずらす */
+}
+
+/* ============================
+   Menu & Space Grid
+   ============================ */
+.menu-grid,
+.space-grid {
+    display: grid;
+    gap: 3rem;
+}
+
+@media (min-width: 768px) {
+    .menu-grid {
+        grid-template-columns: 1fr 1fr;
+        align-items: stretch;
+    }
+
+    .space-grid {
+        grid-template-columns: 1fr 1.5fr;
+        align-items: center;
+    }
+}
+
+.menu-info h3 {
+    font-size: 1.4rem;
+    margin: 1.5rem 0 0.8rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+.menu-item.text-only {
+    background: #fff;
+    padding: 3rem 2rem;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+.menu-item.text-only::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px solid rgba(178, 34, 34, 0.1);
+    /* 朱色の薄い枠線で高級感 */
+    pointer-events: none;
+}
+
+.accent-title {
+    color: var(--color-accent);
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+}
+
+.space-desc {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.seat-info {
+    list-style: none;
+    border-top: 1px dashed rgba(0, 0, 0, 0.2);
+    padding-top: 1.5rem;
+}
+
+.seat-info li {
+    margin-bottom: 1.5rem;
+    font-family: var(--font-sans);
+    /* 説明文は視認性の高いゴシック */
+    font-size: 0.95rem;
+}
+
+.seat-info strong {
+    color: var(--color-accent);
+    font-weight: bold;
+    font-family: var(--font-serif);
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+}
+
+/* ============================
+   Image Wrappers & Hover Effects
+   ============================ */
+.image-wrapper {
+    overflow: hidden;
+    background-color: #ddd;
+    aspect-ratio: 4 / 3;
+    width: 100%;
+}
+
+.zoom-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: block;
+}
+
+/* スマホタップ時、またはPCホバー時に拡大 */
+.image-wrapper:hover .zoom-image,
+.image-wrapper:active .zoom-image {
+    transform: scale(1.06);
+}
+
+/* ============================
+   Info Section (Access)
+   ============================ */
+.info-grid {
+    display: grid;
+    gap: 3rem;
+}
+
+@media (min-width: 768px) {
+    .info-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.info-list {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 1.5rem 1rem;
+    font-family: var(--font-sans);
+    /* 情報は読みやすくゴシック寄り */
+}
+
+.info-list dt {
+    color: var(--color-accent);
+    font-family: var(--font-serif);
+    border-bottom: 1px solid rgba(178, 34, 34, 0.2);
+    padding-bottom: 0.2rem;
+}
+
+.info-list dd {
+    margin: 0;
+    padding-bottom: 0.2rem;
+    line-height: 1.6;
+}
+
+.phone-link {
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.phone-link:hover {
+    color: var(--color-accent);
+}
+
+.info-map iframe {
+    /* 地図の色味をセピア・モノクロに寄せて和風デザインに馴染ませる */
+    filter: grayscale(80%) sepia(20%) hue-rotate(5deg) contrast(105%);
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    display: block;
+}
+
+/* ============================
+   Footer
+   ============================ */
+.footer {
+    text-align: center;
+    padding: 3rem 1rem;
+    background-color: var(--color-text);
+    color: var(--color-bg);
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+}
+
+/* ============================
+   Mobile First Design & Sticky Actions
+   ============================ */
+.mobile-sticky-actions {
+    display: none;
+    /* デフォルト無効（スマホ画面で有効化） */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.1);
+    font-family: var(--font-sans);
+}
+
+.mobile-sticky-actions a {
+    flex: 1;
+    text-align: center;
+    padding: 1.2rem 0;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.mobile-sticky-actions .btn-primary {
+    background-color: var(--color-accent);
+    color: #FFF;
+}
+
+.mobile-sticky-actions .btn-secondary {
+    color: var(--color-text);
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 767px) {
+
+    /* スマホの固定メニュー表示 */
+    .mobile-sticky-actions {
+        display: flex;
+    }
+
+    body {
+        padding-bottom: 70px;
+        /* 固定メニューと被らないように余白 */
+    }
+
+    /* ヒーローの調整（スマホでも縦書き維持しつつセンタリング） */
+    .hero-inner {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .store-name {
+        font-size: 2.5rem;
+        padding-left: 0;
+        border-left: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+        padding-bottom: 1.5rem;
+    }
+
+    .hero-concept {
+        padding-top: 0;
+    }
+}
+
+/* ============================
+   Antigravity Visual Directives (Animations)
+   ============================ */
+
+/* 静かな波紋のようにふんわりと浮き上るエフェクト */
+.section-fade {
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(4px);
+    /* 波紋のようなくすみから明瞭になる動作 */
+    transition: opacity 1.5s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 1.5s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.section-fade.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+}
+
+/* ファーストビューのアニメーション */
+.hero .hero-inner {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: rippleUp 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.3s;
+}
+
+@keyframes rippleUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+        filter: blur(5px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
