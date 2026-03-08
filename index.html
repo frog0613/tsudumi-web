@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>お酒とおばんざい つづみ | 札幌すすきの</title>
-    <meta name="description" content="札幌すすきのにある和食・おばんざいの店「つづみ」。旬の食材を活かした丁寧なおばんざいと、店主厳選の日本酒をお楽しみください。">
+    <meta name="description" content="札幌すすきのにある和食・おばんざいの店「つづみ」。旬の食材を活かした丁寧なおばんざいと、店主厳選の日本酒をお楽しみください。4月3日オープン。">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <!-- モバイル向け：最優先の予約ボタン・アクセス（スクロール追従する下部固定バー） -->
+    <!-- モバイル向け固定バー -->
     <div class="mobile-sticky-actions">
         <a href="tel:09028184904" class="btn-primary">
             <span class="icon">📞</span> 電話予約
@@ -24,13 +24,28 @@
         </a>
     </div>
 
-    <!-- ヒーローセクション（ファーストビュー） -->
+    <!-- ==========================================
+         ヒーローセクション — logo.jpg を背景に使用
+         ========================================== -->
     <header class="hero section-fade">
-        <div class="hero-inner">
-            <h1 class="store-name vertical-text">お酒とおばんざい<span class="name-highlight">つづみ</span></h1>
-            <p class="hero-concept vertical-text">旬の食材を活かした丁寧なおばんざいと、店主厳選の日本酒。</p>
+        <div class="hero-logo-bg">
+            <img src="sozai/logo/logo.jpg" alt="お酒とおばんざい つづみ 看板">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-tagline">日本酒と季節の手しごと</p>
+            <p class="hero-sub">少しずつ、ゆっくりどうぞ。</p>
         </div>
     </header>
+
+    <!-- ==========================================
+         オープン告知セクション — open.jpg を使用
+         ========================================== -->
+    <section class="open-announce section-fade">
+        <div class="open-announce-inner">
+            <img src="sozai/logo/open.jpg" alt="4月3日オープン" class="open-img">
+        </div>
+    </section>
 
     <main>
         <!-- 料理とお酒 (Menu) -->
@@ -63,28 +78,37 @@
             </div>
         </section>
 
-        <!-- 店内空間 (Space) -->
+        <!-- ==========================================
+             店主紹介 + 店内空間 — master.jpg を使用
+             ========================================== -->
         <section id="space" class="section section-fade bg-alt">
             <div class="container">
-                <h2 class="section-title">空間</h2>
-                <div class="space-grid">
-                    <div class="space-info">
-                        <p class="space-desc">木のぬくもりを感じる、隠れ家のような落ち着いた空間。</p>
-                        <ul class="seat-info">
-                            <li>
-                                <strong>カウンター（12席）</strong>
-                                店主との会話を楽しめる特等席
-                            </li>
-                            <li>
-                                <strong>テーブル席（6席）</strong>
-                                最大18名まで対応可能
-                            </li>
-                        </ul>
+                <h2 class="section-title">空間と人</h2>
+                <div class="master-section">
+                    <div class="master-photo-wrapper">
+                        <img src="sozai/logo/master.jpg" alt="店主" class="master-photo">
                     </div>
-                    <div class="image-wrapper">
-                        <img src="sozai/naisou/interior_01.jpg" alt="店内の様子" class="zoom-image"
-                            onerror="this.src='https://images.unsplash.com/photo-1542665952-1451334e2b17?q=80&w=1000&auto=format&fit=crop';">
+                    <div class="master-intro">
+                        <h3 class="master-title">店主ごあいさつ</h3>
+                        <p class="master-text">
+                            木のぬくもりを感じる、隠れ家のような落ち着いた空間で、<br>
+                            旬の食材を活かした丁寧なおばんざいと、<br>
+                            厳選の日本酒をお楽しみください。
+                        </p>
                     </div>
+                </div>
+
+                <div class="space-detail">
+                    <ul class="seat-info">
+                        <li>
+                            <strong>カウンター（12席）</strong>
+                            店主との会話を楽しめる特等席
+                        </li>
+                        <li>
+                            <strong>テーブル席（6席）</strong>
+                            最大18名まで対応可能
+                        </li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -127,7 +151,6 @@
         <p><small>&copy; お酒とおばんざい つづみ All Rights Reserved.</small></p>
     </footer>
 
-    <!-- スクロールアニメーション用スクリプト -->
     <script src="scripts/wa-logic.js"></script>
 </body>
 

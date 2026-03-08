@@ -8,6 +8,7 @@
     --color-text: #333333;
     --color-accent: #B22222;
     --color-alt-bg: rgba(230, 227, 215, 0.4);
+    --color-dark: #1a1a1a;
 
     --font-serif: 'Noto Serif JP', serif;
     --font-sans: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
@@ -100,60 +101,87 @@ h3 {
 }
 
 /* ============================
-   Hero Section (ファーストビュー)
+   Hero Section — logo.jpg を背景に
    ============================ */
 .hero {
+    position: relative;
     height: 100vh;
     height: 100dvh;
-    /* iPhone Safari対応: アドレスバーを除いた実際の表示高さ */
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+    /* 下部にコンテンツを配置 */
     justify-content: center;
+    overflow: hidden;
+}
+
+.hero-logo-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.hero-logo-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+/* 看板画像の下部にグラデーションのオーバーレイ */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0) 40%,
+            rgba(0, 0, 0, 0.6) 100%);
+}
+
+.hero-content {
     position: relative;
-    padding: 2rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    z-index: 2;
+    text-align: center;
+    padding: 3rem 2rem;
+    color: #fff;
 }
 
-.hero-inner {
-    display: flex;
-    gap: 3rem;
-    flex-direction: row-reverse;
-    /* 右から左へ流れる和風の視線誘導 */
-    max-height: 80vh;
-    max-height: 80dvh;
+.hero-tagline {
+    font-size: clamp(1rem, 3vw, 1.6rem);
+    letter-spacing: 0.3em;
+    margin-bottom: 0.8rem;
+    opacity: 0.9;
 }
 
-/* 縦書き */
-.vertical-text {
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-}
-
-.store-name {
-    font-size: clamp(1.6rem, 4vw, 3.5rem);
-    line-height: 1.8;
+.hero-sub {
+    font-size: clamp(0.85rem, 2vw, 1.1rem);
     letter-spacing: 0.2em;
-    color: var(--color-text);
-    border-left: 1px solid rgba(0, 0, 0, 0.15);
-    padding-left: 1.5rem;
-}
-
-.name-highlight {
-    color: var(--color-accent);
-}
-
-.hero-concept {
-    font-size: clamp(0.8rem, 2vw, 1.15rem);
-    line-height: 2.2;
-    letter-spacing: 0.15em;
-    color: #555;
+    opacity: 0.7;
 }
 
 /* ============================
-   Menu & Space Grid
+   Open Announce — open.jpg バナー
    ============================ */
-.menu-grid,
-.space-grid {
+.open-announce {
+    background-color: var(--color-dark);
+    padding: 0;
+    overflow: hidden;
+}
+
+.open-announce-inner {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.open-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ============================
+   Menu Grid
+   ============================ */
+.menu-grid {
     display: grid;
     gap: 3rem;
 }
@@ -162,11 +190,6 @@ h3 {
     .menu-grid {
         grid-template-columns: 1fr 1fr;
         align-items: stretch;
-    }
-
-    .space-grid {
-        grid-template-columns: 1fr 1.5fr;
-        align-items: center;
     }
 }
 
@@ -206,19 +229,96 @@ h3 {
     margin-bottom: 1.5rem;
 }
 
-.space-desc {
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
+/* ============================
+   Master Section (店主紹介)
+   ============================ */
+.master-section {
+    display: grid;
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+    .master-section {
+        grid-template-columns: 1fr 1.2fr;
+    }
+}
+
+.master-photo-wrapper {
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    position: relative;
+}
+
+.master-photo-wrapper::after {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    pointer-events: none;
+}
+
+.master-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.master-photo-wrapper:hover .master-photo {
+    transform: scale(1.04);
+}
+
+.master-intro {
+    padding: 1rem 0;
+}
+
+.master-title {
+    font-size: 1.5rem;
+    color: var(--color-accent);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.15em;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.master-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background-color: var(--color-accent);
+}
+
+.master-text {
+    font-size: 1rem;
+    line-height: 2.2;
+    color: #555;
+}
+
+/* 座席情報 */
+.space-detail {
+    border-top: 1px dashed rgba(0, 0, 0, 0.15);
+    padding-top: 3rem;
 }
 
 .seat-info {
     list-style: none;
-    border-top: 1px dashed rgba(0, 0, 0, 0.2);
-    padding-top: 1.5rem;
+    display: grid;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .seat-info {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 .seat-info li {
-    margin-bottom: 1.5rem;
     font-family: var(--font-sans);
     font-size: 0.95rem;
 }
@@ -322,7 +422,7 @@ h3 {
 }
 
 /* ============================
-   Mobile First Design & Sticky Actions
+   Mobile Sticky Actions
    ============================ */
 .mobile-sticky-actions {
     display: none;
@@ -360,10 +460,9 @@ h3 {
 }
 
 /* ============================
-   スマホ向けレイアウト調整
+   スマホ向け
    ============================ */
 @media (max-width: 767px) {
-
     .mobile-sticky-actions {
         display: flex;
     }
@@ -372,45 +471,22 @@ h3 {
         padding-bottom: 70px;
     }
 
-    /* ============================
-       ヒーロー：縦書きを維持しつつiPhone画面に収まるよう調整
-       - dvhで正確な表示エリアを確保
-       - フォントサイズをclampで動的に縮小
-       - max-heightで縦書きの高さを制限
-       ============================ */
     .hero {
         height: 100dvh;
-        padding: 1.5rem;
-    }
-
-    .hero-inner {
-        gap: 1rem;
-        max-height: 75dvh;
-    }
-
-    .store-name {
-        font-size: clamp(1.3rem, 5.5vw, 1.8rem);
-        line-height: 1.6;
-        letter-spacing: 0.15em;
-        padding-left: 0.8rem;
-    }
-
-    .hero-concept {
-        font-size: clamp(0.7rem, 3vw, 0.9rem);
-        line-height: 2;
-        letter-spacing: 0.1em;
     }
 
     .section {
         padding: 4rem 0;
+    }
+
+    .master-text br {
+        display: none;
     }
 }
 
 /* ============================
    Antigravity Visual Directives (Animations)
    ============================ */
-
-/* 静かな波紋のようにふんわりと浮き上るエフェクト */
 .section-fade {
     opacity: 0;
     transform: translateY(40px);
@@ -427,13 +503,12 @@ h3 {
 }
 
 /* ファーストビューのアニメーション */
-.hero .hero-inner {
+.hero .hero-content {
     opacity: 0;
-    transform: translateY(30px);
-    animation: rippleUp 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.3s;
+    animation: fadeSlideUp 2s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.5s;
 }
 
-@keyframes rippleUp {
+@keyframes fadeSlideUp {
     0% {
         opacity: 0;
         transform: translateY(30px);
