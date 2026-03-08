@@ -25,22 +25,23 @@
     </div>
 
     <!-- ==========================================
-         ヒーローセクション — logo.jpg を背景に使用
+         ヒーローセクション — 縦書き + ロゴ小さめ配置
          ========================================== -->
     <header class="hero section-fade">
-        <div class="hero-logo-bg">
-            <img src="sozai/logo/logo.jpg" alt="お酒とおばんざい つづみ 看板">
-        </div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <p class="hero-tagline">日本酒と季節の手しごと</p>
-            <p class="hero-sub">少しずつ、ゆっくりどうぞ。</p>
+        <div class="hero-inner">
+            <!-- ロゴ画像（コンパクトに上部に配置） -->
+            <div class="hero-logo">
+                <img src="sozai/logo/logo.jpg" alt="つづみ看板ロゴ">
+            </div>
+            <!-- 縦書き店名 -->
+            <div class="hero-text-area">
+                <h1 class="store-name vertical-text">お酒とおばんざい<span class="name-highlight">つづみ</span></h1>
+                <p class="hero-concept vertical-text">旬の食材を活かした丁寧なおばんざいと、店主厳選の日本酒。</p>
+            </div>
         </div>
     </header>
 
-    <!-- ==========================================
-         オープン告知セクション — open.jpg を使用
-         ========================================== -->
+    <!-- オープン告知バナー -->
     <section class="open-announce section-fade">
         <div class="open-announce-inner">
             <img src="sozai/logo/open.jpg" alt="4月3日オープン" class="open-img">
@@ -78,9 +79,7 @@
             </div>
         </section>
 
-        <!-- ==========================================
-             店主紹介 + 店内空間 — master.jpg を使用
-             ========================================== -->
+        <!-- 店主紹介 + 店内空間 -->
         <section id="space" class="section section-fade bg-alt">
             <div class="container">
                 <h2 class="section-title">空間と人</h2>
@@ -91,13 +90,10 @@
                     <div class="master-intro">
                         <h3 class="master-title">店主ごあいさつ</h3>
                         <p class="master-text">
-                            木のぬくもりを感じる、隠れ家のような落ち着いた空間で、<br>
-                            旬の食材を活かした丁寧なおばんざいと、<br>
-                            厳選の日本酒をお楽しみください。
+                            木のぬくもりを感じる、隠れ家のような落ち着いた空間で、旬の食材を活かした丁寧なおばんざいと、厳選の日本酒をお楽しみください。
                         </p>
                     </div>
                 </div>
-
                 <div class="space-detail">
                     <ul class="seat-info">
                         <li>
@@ -113,7 +109,7 @@
             </div>
         </section>
 
-        <!-- 店舗情報 (Access & Info) -->
+        <!-- 店舗情報 -->
         <section id="access" class="section section-fade">
             <div class="container">
                 <h2 class="section-title">店舗情報</h2>
@@ -122,17 +118,14 @@
                         <dl class="info-list">
                             <dt>営業時間</dt>
                             <dd>18:00 〜 24:00</dd>
-
                             <dt>定休日</dt>
                             <dd>日曜日・祝日</dd>
-
                             <dt>所在地</dt>
                             <dd>
                                 〒064-0804<br>
                                 北海道札幌市中央区南４条西３丁目２−３<br>
                                 第３２桂和ビル 6階
                             </dd>
-
                             <dt>電話番号</dt>
                             <dd><a class="phone-link" href="tel:09028184904">090-2818-4904</a></dd>
                         </dl>
