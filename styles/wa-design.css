@@ -108,8 +108,12 @@ h3 {
    Hero Section (ファーストビュー)
    ============================ */
 .hero {
+    /* dvh: iPhoneSafariのアドレスバーを除いた正確な表示エリアに合わせる
+       100vh はアドレスバーを含んでしまいコンテンツが隠れるため使用しない */
     min-height: 100vh;
-    /* PCでは画面いっぱい */
+    /* fallback for old browsers */
+    min-height: 100dvh;
+    /* iPhone Safari対応の動的ビューポート高さ */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -381,47 +385,36 @@ h3 {
     }
 
     /* ============================
-       モバイルのヒーロー：根本的に横書きに切り替え
-       縦書き（vertical-rl）はiPhoneで高さが画面を超えると
-       上部が見えなくなるため、スマホでは横書きに統一する
+       モバイルのヒーロー調整
+       縦書きはそのまま維持し、フォントサイズを小さくして
+       iPhone画面内に収まるように調整する
        ============================ */
     .hero {
-        min-height: auto;
-        /* 固定高さをやめてコンテンツに合わせる */
-        padding: 5rem 2rem 4rem;
-        /* 上下に余白を確保 */
-        align-items: center;
-        justify-content: center;
+        min-height: 100dvh;
+        /* dvhでiPhoneアドレスバー分を除外 */
+        padding: 1rem;
     }
 
     .hero-inner {
-        flex-direction: column;
-        /* 縦並び */
-        align-items: center;
-        gap: 2.5rem;
-        width: 100%;
-        text-align: center;
+        /* row-reverse（横並び）のまま維持して縦書きを活かす */
+        gap: 1.5rem;
     }
 
-    /* スマホでは縦書きを横書きに上書き */
-    .hero .vertical-text {
-        writing-mode: horizontal-tb !important;
-        text-orientation: mixed !important;
-    }
-
+    /* スマホでは縦書きを維持しつつフォントを縮小 */
     .store-name {
-        font-size: 2.4rem;
-        line-height: 1.4;
+        font-size: 1.7rem;
+        /* 文字を小さくして縦に並んだとき収まるよう */
         letter-spacing: 0.2em;
-        padding-left: 0;
-        border-left: none;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-        padding-bottom: 1.5rem;
+        padding-left: 1rem;
+        border-left: 1px solid rgba(0, 0, 0, 0.15);
+        /* 左線を復活 */
+        border-bottom: none;
+        padding-bottom: 0;
     }
 
     .hero-concept {
-        font-size: 1rem;
-        line-height: 2;
+        font-size: 0.85rem;
+        line-height: 2.2;
         letter-spacing: 0.15em;
         padding-top: 0;
     }
