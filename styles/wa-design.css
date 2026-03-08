@@ -101,7 +101,7 @@ h3 {
 }
 
 /* ============================
-   Hero Section — 縦書き + ロゴのコンパクト配置
+   Hero Section
    ============================ */
 .hero {
     height: 100vh;
@@ -114,32 +114,33 @@ h3 {
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
+/* ヒーローの内側：縦方向に
+   [ロゴ(小)]  →  [縦書きテキスト群(横並び)]  を積む */
 .hero-inner {
     display: flex;
-    gap: 2.5rem;
-    flex-direction: row-reverse;
-    /* 右→左：和風の視線誘導 */
+    flex-direction: column;
     align-items: center;
-    max-height: 80dvh;
+    gap: 2.5rem;
 }
 
-/* ロゴ画像（看板）：コンパクトに配置 */
+/* ロゴ画像 */
 .hero-logo {
     flex-shrink: 0;
 }
 
 .hero-logo img {
-    width: clamp(100px, 18vw, 200px);
+    width: 120px;
     height: auto;
     border-radius: 4px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
 
-/* 縦書きテキストエリア */
+/* 縦書きテキスト群：店名とコンセプトを横並び(row-reverse)で右→左に */
 .hero-text-area {
     display: flex;
-    gap: 2rem;
+    gap: 2.5rem;
     flex-direction: row-reverse;
+    align-items: flex-start;
 }
 
 .vertical-text {
@@ -148,8 +149,8 @@ h3 {
 }
 
 .store-name {
-    font-size: clamp(1.5rem, 4vw, 3.5rem);
-    line-height: 1.8;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    line-height: 1.7;
     letter-spacing: 0.2em;
     color: var(--color-text);
     border-left: 1px solid rgba(0, 0, 0, 0.15);
@@ -161,10 +162,11 @@ h3 {
 }
 
 .hero-concept {
-    font-size: clamp(0.75rem, 2vw, 1.1rem);
-    line-height: 2.2;
+    font-size: clamp(0.75rem, 1.3vw, 0.95rem);
+    line-height: 2;
     letter-spacing: 0.15em;
     color: #555;
+    padding-top: 0.5rem;
 }
 
 /* ============================
@@ -172,12 +174,12 @@ h3 {
    ============================ */
 .open-announce {
     background-color: var(--color-dark);
-    padding: 0;
+    padding: 3rem 0;
     overflow: hidden;
 }
 
 .open-announce-inner {
-    max-width: 480px;
+    max-width: 420px;
     margin: 0 auto;
 }
 
@@ -185,6 +187,7 @@ h3 {
     width: 100%;
     height: auto;
     display: block;
+    border-radius: 4px;
 }
 
 /* ============================
@@ -481,27 +484,16 @@ h3 {
         padding: 1.5rem 1rem;
     }
 
-    /* ヒーローは縦積み配置:
-       上にロゴ（小さめ）、下に縦書きテキスト */
     .hero-inner {
-        flex-direction: column;
-        align-items: center;
         gap: 1.5rem;
-        max-height: none;
     }
 
     .hero-logo img {
-        width: 120px;
-        /* スマホではロゴを小さめに */
+        width: 100px;
     }
 
-    /* 縦書きテキスト部分を横並びに保持 */
     .hero-text-area {
-        flex-direction: row-reverse;
         gap: 1rem;
-        flex: 1;
-        align-items: center;
-        justify-content: center;
     }
 
     .store-name {
@@ -517,18 +509,20 @@ h3 {
         letter-spacing: 0.1em;
     }
 
-    /* オープン告知画像をスマホでもコンパクトに */
+    .open-announce {
+        padding: 2rem 0;
+    }
+
     .open-announce-inner {
-        max-width: 320px;
+        max-width: 280px;
     }
 
     .section {
         padding: 4rem 0;
     }
 
-    /* マスター写真をスマホで大きくなりすぎないよう */
     .master-photo-wrapper {
-        max-width: 250px;
+        max-width: 220px;
         margin: 0 auto;
     }
 }
@@ -551,7 +545,6 @@ h3 {
     filter: blur(0px);
 }
 
-/* ファーストビューのアニメーション */
 .hero .hero-inner {
     opacity: 0;
     transform: translateY(30px);
